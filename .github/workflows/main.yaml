@@ -1,4 +1,4 @@
-cat >.github/workflows/main.yaml<<EOF
+
 name: Django                                  # workflow name
 
 on:
@@ -55,4 +55,3 @@ jobs:
     needs: integration
     steps:
       - run: echo "This is a deploy step."
-EOF
