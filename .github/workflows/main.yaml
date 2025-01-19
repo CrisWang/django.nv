@@ -42,28 +42,14 @@ jobs:
           pip install -r requirements.txt
           python manage.py test taskManager
 
-
-  
-  nuclei-scan:
+  integration:
     runs-on: ubuntu-20.04
     needs: test
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: main
-
-      - name: Nuclei - Vulnerability Scan
-        uses: projectdiscovery/nuclei-action@main
-        with:
-          target: ${{ secrets.PROD_URL }}
+      - run: echo "This is an integration step"
+      - run: exit 1
         continue-on-error: true
 
-      - name: GitHub Workflow artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: nuclei.log
-          path: nuclei.log    
   prod:
     runs-on: ubuntu-20.04
     needs: integration
