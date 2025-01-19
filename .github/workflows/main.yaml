@@ -1,4 +1,3 @@
-
 name: Django                                  # workflow name
 
 on:
@@ -42,6 +41,13 @@ jobs:
           pip install -r requirements.txt
           python manage.py test taskManager
 
+  integration:
+    runs-on: ubuntu-20.04
+    needs: test
+    steps:
+      - run: echo "This is an integration step"
+      - run: exit 1
+        continue-on-error: true
   nuclei-scan:
     runs-on: ubuntu-20.04
     needs: test
